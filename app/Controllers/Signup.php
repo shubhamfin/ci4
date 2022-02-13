@@ -10,5 +10,6 @@ class Signup extends BaseController
     {
         echo "signup page";
         echo "2";
+        echo "3";
     }
 }
