@@ -2,6 +2,11 @@
 
 namespace App\Entities;
 
-class Task extends \CodeIgniter\Entity
+use CodeIgniter\Entity\Entity;
+
+class Task extends Entity
 {
+    protected $datamap = [];
+    protected $dates   = ['created_at', 'updated_at', 'deleted_at'];
+    protected $casts   = [];
 }
