@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Task;
-
+use App\Entities\User;
 class Tasks extends BaseController
 {
 	private $model;
@@ -28,7 +28,7 @@ class Tasks extends BaseController
             'task' => $task
         ]);
 	}
-	
+
 	public function new()
 	{
         $task = new Task;
