@@ -9,5 +9,6 @@ class Signup extends BaseController
     public function index()
     {
         echo "signup page";
+        echo "2";
     }
 }
