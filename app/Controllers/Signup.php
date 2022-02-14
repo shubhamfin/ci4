@@ -19,7 +19,14 @@ class Signup extends BaseController
     {
         $user = new \App\Entities\User($this->request->getPost());
         $model = new \App\Models\UserModel();
-        $model->insert($user);
-        echo "sign Up complet";
+        if ($model->insert($user)) {
+            return redirect()->to('signup/success');
+        } else {
+            return redirect()->back()->with('errors', $model->errors())->withInput();
+        }
+    }
+    public function success()
+    {
+        return view('signup/success');
     }
 }

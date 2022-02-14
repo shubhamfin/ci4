@@ -1,9 +1,12 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 class Home extends BaseController
 {
 	public function index()
 	{
+		helper('auth');
 		return view("Home/index");
 		//asdad
 	}
