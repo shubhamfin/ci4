@@ -22,7 +22,7 @@
 <input type="password" name="password" placeholder="Password" />
 <input type="password" name="password_cnf" placeholder="Confirm Password " />
 <button>Sign Up</button> -->
-<h1>Signup Successfull</h1>
+<h1>User Register Successfull </h1>
 
 <?= anchor(site_url('./'),'Go Back')?>
 <?= form_close() ?>
