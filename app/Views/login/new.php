@@ -18,7 +18,7 @@
     <label for="email">Eamil</label>
     <input type="text" id="email" name="email" placeholder="Email" value="<?= old('email') ?>" />
 </div>
-<div>
+<div class="label">
     <label for="password">Password</label>
     <input id="password" type="password" name="password" placeholder="Password" />
 </div>
