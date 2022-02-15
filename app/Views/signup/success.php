@@ -25,6 +25,8 @@
 <h1>User Register Successfull This is test2 branch changes </h1>
 <h1>User Register Successfull this is new canges form test 2 </h1>
 <h1>User Register Successfull this is new canges form test 2 </h1>
+<h1>User Register Successfull this is new canges form test 2 </h1>
+<h1>User Register Successfull this is new canges form test 2 </h1>
 
 <?= anchor(site_url('./'),'Go Back')?>
 <?= form_close() ?>
