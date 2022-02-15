@@ -8,21 +8,25 @@ use App\Entities\User;
 class Tasks extends BaseController
 {
 	private $model;
+	private $user;
 
 	public function __construct()
 	{
-		if (!service('auth')->isLoggedIn()) {
-			return redirect()->to('/login')->with('warning', 'Please login first');
-		}
+		$this->user =	 service('auth')->getCurrentUser();
 		$this->model = new \App\Models\TaskModel;
 	}
 
 	public function index()
 	{
 
-		$data = $this->model->findAll();
+		$user_id = $this->user->id;
+		//	dd(	$auth->getCurrentUser()->id);
+		$data = $this->model->paginateTasksByUserID($user_id);
 
-		return view("Tasks/index", ['tasks' => $data]);
+		return view("Tasks/index", [
+			'tasks' => $data,
+			'pager' => $this->model->pager
+		]);
 	}
 
 	public function show($id)
@@ -45,14 +49,15 @@ class Tasks extends BaseController
 
 	public function create()
 	{
-		$task = new Task($this->request->getPost());
+		$task = new Task();
+		$task->fill($this->request->getPost());
+		$task->user_id = $this->user->id;
 
-		if ($this->model->insert($task)) {
+		if ($this->model->addTaskWithUserID($task)) {
 
 			return redirect()->to("/tasks/show/{$this->model->insertID}")
 				->with('info', 'Task created successfully');
 		} else {
-
 			return redirect()->back()
 				->with('errors', $this->model->errors())
 				->with('warning', 'Invalid data')
@@ -72,8 +77,9 @@ class Tasks extends BaseController
 	public function update($id)
 	{
 		$task = $this->getTaskOr404($id);
-
-		$task->fill($this->request->getPost());
+		$data = $this->request->getPost();
+		unset($data['user_id']);
+		$task->fill($data);
 
 		if (!$task->hasChanged()) {
 
@@ -114,10 +120,9 @@ class Tasks extends BaseController
 
 	private function getTaskOr404($id)
 	{
-		$task = $this->model->find($id);
+		$task = $this->model->getTaskByUserID($id, $this->user->id);
 
 		if ($task === null) {
-
 			throw new \CodeIgniter\Exceptions\PageNotFoundException("Task with id $id not found");
 		}
 

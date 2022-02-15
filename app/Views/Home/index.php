@@ -10,10 +10,8 @@
     <?php endif ?>
 </h1>
 
-<?php if (current_user()) : ?>
-    <?= anchor(site_url('logout'), 'Logout') ?>
-<?php endif ?>
-<?= anchor(site_url('login'), 'Login') ?>
-<?= anchor(site_url('signup'), 'Sign Up') ?>
+
+
+
 
 <?= $this->endSection() ?>

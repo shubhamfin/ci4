@@ -42,7 +42,7 @@ class UserModel extends Model
     protected $allowCallbacks = true;
     protected $beforeInsert   = ['hashPassword'];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = ['hashPassword'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
@@ -64,6 +64,19 @@ class UserModel extends Model
     }
     public function findByuserID($id)
     {
-        return $this->find($id);
+        return $this->where('id', $id)->first();
+    }
+    public function paginateUserList()
+    {
+        return $this->paginate(5);
+    }
+    public function addUser($data)
+    {
+        return  $this->insert($data);
+    }
+    public function disablePasswordValidation()
+    {
+        unset($this->validationRules['password']);
+        unset($this->validationRules['password_cnf']);
     }
 }
