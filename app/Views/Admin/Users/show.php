@@ -11,9 +11,12 @@
 <body>
     <h1>User details</h1>
     <h3><?= $user->name ?></h3>
-    <?= anchor(site_url('/admin/users/edit/'.$user->id),'edit')?>
+    </br>
+    <?= anchor(site_url('/admin/users/edit/' . $user->id), 'Edit ') ?>
+
+    <?= anchor(site_url('/admin/users/delete/' . $user->id), 'Delete ') ?>
     <br>
-    <?= anchor('/admin/users','go back') ?>
+    <?= anchor('/admin/users', 'go back') ?>
 </body>
 
 </html>
