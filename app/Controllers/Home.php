@@ -9,6 +9,7 @@ class Home extends BaseController
 
 		return view("Home/index");
 		//asdad
+		//aaa
 	}
 
 	//--------------------------------------------------------------------
